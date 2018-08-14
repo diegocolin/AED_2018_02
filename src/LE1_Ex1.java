@@ -20,6 +20,7 @@ public class LE1_Ex1 {
         //Coleta a entrada
         String valor=JOptionPane.showInputDialog("Insira um valor para descobrir qual a sua posicao na matriz:");
         
+        //Soluçao Quadrática
         //Para cada linha
         for (int i=0;i<6;i++){
             m=m+"\n|"+Integer.toString(i+1)+"\t|";
@@ -50,7 +51,17 @@ public class LE1_Ex1 {
                  * Requisito nao funcional:FIM
                  */
             }
+            //Solução Linear
+                    if (matriz[i][5]<=Integer.parseInt(valor)){
+             for (int j=0;j<6;j++){
+                if (matriz[i][j]==Integer.parseInt(valor)){
+                     retorno = "O valor "+valor+" esta na posicao "+Integer.toString(i+1)+"x"+Integer.toString(j+1);
+                }
+            }
         }
+        }
+
+        
         //lanca a matriz no log
         System.out.println(m);
        //monta a mensagem de saida
@@ -71,4 +82,11 @@ public class LE1_Ex1 {
 //|4	|2015	|3498	|3987	|8722	|8900	|9000	|
 //|5	|9500	|9600	|9872	|9900	|9999	|10000	|
 //|6	|10001	|35522	|72822	|92882	|97652	|100012	|
+    
+    
+    //Ex2.
+    //1+1+(n*(n*(1+1)))+1
+    //2+(n*2n)+1
+    //f(n)=3+2n²
+    
 }
