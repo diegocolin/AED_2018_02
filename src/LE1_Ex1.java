@@ -5,10 +5,7 @@ import javax.swing.JOptionPane;
  * @author DiegoCS
  */
 public class LE1_Ex1 {
-    
-    public static void main(String[] args) {
-        new LE1_Ex1();
-    }
+   
     
     public LE1_Ex1() {
         //Matriz 
