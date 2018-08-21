@@ -1,4 +1,7 @@
 
+import Exercicio1.LE1_Ex1;
+import ListaComArray.PersonalListaComArray;
+import ListaComArray.TesteLista;
 import javax.swing.JOptionPane;
 
 /*
@@ -21,10 +24,10 @@ public class Main {
                 new LE1_Ex1();
                 break;
             case "AL":
-                new ListaComArray().ListaComArrayTeste();
+                new TesteLista().main(args);
                 break;
             default:
-                JOptionPane.showMessageDialog(null,"Opcao Invalida");
+                JOptionPane.showMessageDialog(null,"Opcao Invalida:");
         }
         
     }
