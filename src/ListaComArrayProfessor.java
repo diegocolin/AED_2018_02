@@ -1,9 +1,9 @@
-package ListaComArray;
+
 /**
  *
  * @author marcel
  */
-public class ListaComArrayProfessor  {
+public class ListaComArrayProfessor implements ListaProfessor   {
     private String[] valores;
     private static final int MAXTAM = 100;
     private int ultimo = 0;
@@ -12,6 +12,7 @@ public class ListaComArrayProfessor  {
         valores = new String[MAXTAM];
     }
     
+    @Override
     public void insere(String x){
         /*
         if (ultimo < MAXTAM){
@@ -28,15 +29,18 @@ public class ListaComArrayProfessor  {
     }
     
     
+    @Override
 	public boolean estaCheia() {
         return (ultimo == MAXTAM);
     }
     
     
+    @Override
 	public boolean estaVazia() {
         return (ultimo == 0);
     }
     
+    @Override
 	public void insere(String x, int p){
         if (!this.estaCheia()
             && p <= ultimo){
@@ -51,6 +55,7 @@ public class ListaComArrayProfessor  {
     }
     
     
+    @Override
     public String retira(int p){
         String retorno=null;
         if (!this.estaVazia()
@@ -67,6 +72,7 @@ public class ListaComArrayProfessor  {
     }
 
     
+    @Override
     public int localiza(String x){
         for (int i=0; i < this.ultimo; i++){
             if (valores[i].equals(x)){
@@ -77,10 +83,12 @@ public class ListaComArrayProfessor  {
     }
 
     
+    @Override
     public int getTamanho() {
         return this.ultimo;
     }
 
+    @Override
     public String imprime() {
         String retorno = "[";
 
@@ -96,6 +104,7 @@ public class ListaComArrayProfessor  {
         }
     }
 
+    @Override
     public String consulta(int p){
         try {
             return this.valores[p];
@@ -104,7 +113,8 @@ public class ListaComArrayProfessor  {
         }
     }
 
-    public ListaComArrayProfessor concatena(ListaComArrayProfessor outra){
+    @Override
+    public ListaProfessor concatena(ListaProfessor outra){
         if (this.getTamanho()+outra.getTamanho() > MAXTAM)
             return null;
 
@@ -119,7 +129,8 @@ public class ListaComArrayProfessor  {
         return nova;
     }
 
-    public ListaComArrayProfessor divide(){
+    @Override
+    public ListaProfessor divide(){
         if (this.estaVazia())
             return null;
 
@@ -134,7 +145,8 @@ public class ListaComArrayProfessor  {
         return nova;
     }
 
-    public ListaComArrayProfessor copia(){
+    @Override
+    public ListaProfessor copia(){
         ListaComArrayProfessor nova = new ListaComArrayProfessor();
 
         for (int i=0; i < this.getTamanho(); i++){

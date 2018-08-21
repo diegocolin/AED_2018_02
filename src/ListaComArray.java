@@ -1,4 +1,4 @@
-package ListaComArray;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,7 +10,7 @@ package ListaComArray;
  *
  * @author dcsoares
  */
-public class ListaComArray {
+public class ListaComArray implements Lista {
     String array[];
 
     public ListaComArray() {
@@ -19,8 +19,9 @@ public class ListaComArray {
    
     
 
+    @Override
     public void ListaComArrayTeste() {
-       ListaComArray lista = new ListaComArray();
+       Lista lista = new ListaComArray();
         System.out.println(lista.imprime());
         lista.insere("A");
         lista.insere("B");
@@ -38,18 +39,18 @@ public class ListaComArray {
         System.out.println("Esperado C = "+elem);
         System.out.println("Esperado A,B = "+lista.imprime());
         
-        ListaComArray lista2 = new ListaComArray();
+        Lista lista2 = new ListaComArray();
         lista2.insere("X");
         lista2.insere("Y");
         lista2.insere("Z");
         System.out.println("Lista 2 = "+lista2.imprime());
         
-        ListaComArray lista3;
+        Lista lista3;
         lista3 = lista.concatena(lista2);
         System.out.println("Lista 3 (concatenação de 1 e 2)= "+lista3.imprime());
         
-        ListaComArray lista4;
-        ListaComArray lista5;
+        Lista lista4;
+        Lista lista5;
         lista4 = lista3.divide();
         System.out.println("Lista 3 (dividida) = "+lista3.imprime());
         System.out.println("Lista 4 (divisão de 3) = "+lista4.imprime());
@@ -60,8 +61,9 @@ public class ListaComArray {
         System.out.println("Lista 5 (cópia de 4) = "+lista5.imprime());
     }
     
-   public ListaComArray concatena(ListaComArray l){
-       ListaComArray listasConcatenadas = new ListaComArray();
+    @Override
+   public Lista concatena(Lista l){
+       Lista listasConcatenadas = new ListaComArray();
        listasConcatenadas=this.copia();
        for (int i=0;i<l.getArray().length;i++){
            listasConcatenadas.insere(l.getArray()[i]);
@@ -69,7 +71,8 @@ public class ListaComArray {
        return listasConcatenadas;
     }
    
-       private ListaComArray divide() {
+    @Override
+       public Lista divide() {
          ListaComArray listaDividida = new ListaComArray();
        for (int i=0;i<(array.length)/2;i++){
            listaDividida.insere(array[i]);
@@ -77,7 +80,8 @@ public class ListaComArray {
        return listaDividida;
     }
        
-       private ListaComArray copia() {
+    @Override
+       public Lista copia() {
         ListaComArray listaCopiada = new ListaComArray();
          for (int i=0;i<this.getArray().length;i++){
            listaCopiada.insere(this.getArray()[i]);
@@ -87,6 +91,7 @@ public class ListaComArray {
 
 
     
+    @Override
     public void insere(String valor){
     for (int i=0; i<array.length;i++){
         if (array[i]==null){
@@ -95,6 +100,7 @@ public class ListaComArray {
         }
     }    
     }
+    @Override
     public void insere(String valor, int posicao){
         if (array[posicao]==null){
             array[posicao]=valor;
@@ -107,6 +113,7 @@ public class ListaComArray {
         }
     }
     
+    @Override
     public String retira(int posicao){
         String retorno="";
         if (array[posicao]==null){
@@ -120,6 +127,7 @@ public class ListaComArray {
         return retorno;
     }
     
+    @Override
     public int localiza(String valor){
         
         for (int i=0; i<array.length-1;i++){
@@ -131,6 +139,7 @@ public class ListaComArray {
         return -1;
     }
     
+    @Override
     public Boolean estaVazia(){
          for (int i=0; i<array.length;i++){
                 if (array[i]!=null){
@@ -140,6 +149,7 @@ public class ListaComArray {
          return Boolean.TRUE;
     }
         
+    @Override
     public String imprime(){
         String retorno="";
         for (int i=0; i<array.length;i++){
@@ -155,10 +165,12 @@ public class ListaComArray {
         return retorno;
     }
     
+    @Override
     public String[] getArray() {
         return array;
     }
 
+    @Override
     public void setArray(String[] array) {
         this.array = array;
     }

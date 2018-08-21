@@ -1,7 +1,4 @@
 
-import Exercicio1.LE1_Ex1;
-import ListaComArray.ListaComArray;
-import ListaComArray.TesteLista;
 import javax.swing.JOptionPane;
 
 /*
@@ -17,7 +14,10 @@ import javax.swing.JOptionPane;
 public class Main {
     
     public static void main(String[] args) {
-        String exercicio=JOptionPane.showInputDialog("Numero do exercicio: ");
+        String exercicio=JOptionPane.showInputDialog("Exercício: "
+                + "\n 1 - LE1_EX1"
+                + "\n AL - ListaComArray"
+                + "\n ALP - ListaComArrayProfessor");
         
         switch (exercicio){
             case "1":
@@ -27,7 +27,7 @@ public class Main {
                 new ListaComArray().ListaComArrayTeste();
                 break;
             case "ALP":
-                new TesteLista().main(args);
+                new TesteLista();
                 break;
             default:
                 JOptionPane.showMessageDialog(null,"Opcao Invalida:");
