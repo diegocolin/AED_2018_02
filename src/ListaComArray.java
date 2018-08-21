@@ -1,163 +1,147 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+package ListaComArray;
 /**
  *
- * @author dcsoares
+ * @author marcel
  */
-public class ListaComArray {
-    String array[];
-
+public class ListaComArray  {
+    private String[] valores;
+    private static final int MAXTAM = 100;
+    private int ultimo = 0;
+    
     public ListaComArray() {
-        this.array = new String[100];
-    }
-   
-    
-
-    public void ListaComArrayTeste() {
-       ListaComArray lista = new ListaComArray();
-        System.out.println(lista.imprime());
-        lista.insere("A");
-        lista.insere("B");
-        System.out.println("Esperado A,B = "+lista.imprime());
-        lista.insere("C",0);
-        System.out.println("Esperado C,A,B = "+lista.imprime());
-        lista.insere("NAO",10);
-        lista.retira(10);
-        System.out.println("Esperado C,A,B = "+lista.imprime());
-        int pos = lista.localiza("B");
-        System.out.println("Esperado 2 = "+pos);
-        pos = lista.localiza("BA");
-        System.out.println("Esperado -1 = "+pos);
-        String elem = lista.retira(0);
-        System.out.println("Esperado C = "+elem);
-        System.out.println("Esperado A,B = "+lista.imprime());
-        
-        ListaComArray lista2 = new ListaComArray();
-        lista2.insere("X");
-        lista2.insere("Y");
-        lista2.insere("Z");
-        System.out.println("Lista 2 = "+lista2.imprime());
-        
-        ListaComArray lista3;
-        lista3 = lista.concatena(lista2);
-        System.out.println("Lista 3 (concatenação de 1 e 2)= "+lista3.imprime());
-        
-        ListaComArray lista4, lista5;
-        lista4 = lista3.divide();
-        System.out.println("Lista 3 (dividida) = "+lista3.imprime());
-        System.out.println("Lista 4 (divisão de 3) = "+lista4.imprime());
-        lista4.insere("AA",0);
-        System.out.println("Lista 4 com AA na primeira posição = "+lista4.imprime());
-        
-        lista5 = lista4.copia();
-        System.out.println("Lista 5 (cópia de 4) = "+lista5.imprime());
+        valores = new String[MAXTAM];
     }
     
-   public ListaComArray concatena(ListaComArray l){
-       ListaComArray listasConcatenadas = new ListaComArray();
-       listasConcatenadas=this.copia();
-       for (int i=0;i<l.getArray().length;i++){
-           listasConcatenadas.insere(l.getArray()[i]);
-       }
-       return listasConcatenadas;
-    }
-   
-       private ListaComArray divide() {
-         ListaComArray listaDividida = new ListaComArray();
-       for (int i=0;i<(array.length)/2;i++){
-           listaDividida.insere(array[i]);
-       }
-       return listaDividida;
-    }
-       
-       private ListaComArray copia() {
-        ListaComArray listaCopiada = new ListaComArray();
-         for (int i=0;i<this.getArray().length;i++){
-           listaCopiada.insere(this.getArray()[i]);
-       }
-        return listaCopiada;
-    }
-
-
-    
-    public void insere(String valor){
-    for (int i=0; i<array.length;i++){
-        if (array[i]==null){
-        array[i]=valor;
-        break;
+    public void insere(String x){
+        /*
+        if (ultimo < MAXTAM){
+            valores[ultimo] = x;
+            ultimo++;
         }
-    }    
-    }
-    public void insere(String valor, int posicao){
-        if (array[posicao]==null){
-            array[posicao]=valor;
-        }else{
-            int tamanhoArray=array.length;
-            for (int i=tamanhoArray-1; i>posicao;i--){
-                array[i]=array[i-1];
-            }
-            array[posicao]=valor;
+        */
+        try {
+            valores[ultimo] = x;
+            ultimo++;            
+        } catch (ArrayIndexOutOfBoundsException aiobe){  
+            // não é feito nada, ou seja, o elemento não é incluído por não ter mais espaço
         }
     }
     
-    public String retira(int posicao){
-        String retorno="";
-        if (array[posicao]==null){
-            retorno = "Nenhum item foi encontrado nessa posição";
-        } else {
-            retorno = array[posicao]+" retirado da lista";
-            for (int i=posicao; i<array.length-1;i++){
-                array[i]=array[i+1];
+    
+	public boolean estaCheia() {
+        return (ultimo == MAXTAM);
+    }
+    
+    
+	public boolean estaVazia() {
+        return (ultimo == 0);
+    }
+    
+	public void insere(String x, int p){
+        if (!this.estaCheia()
+            && p <= ultimo){
+            String temp;
+            for (int i = p; i <= ultimo; i++){
+                temp = valores[i];
+                valores[i] = x;
+                x = temp;
             }
+            ultimo++;
+        }
+    }
+    
+    
+    public String retira(int p){
+        String retorno=null;
+        if (!this.estaVazia()
+            && p >= 0 
+            && p < ultimo){
+            retorno = valores[p];
+            for (int i = p; i < ultimo-1; i++){
+                valores[i] = valores[i+1];
+            }
+            ultimo--;
+            valores[ultimo] = null;  // opcional
         }
         return retorno;
     }
+
     
-    public int localiza(String valor){
-        
-        for (int i=0; i<array.length-1;i++){
-                if (array[i] != null && array[i].equals(valor)){
-                    return i;
-                }
+    public int localiza(String x){
+        for (int i=0; i < this.ultimo; i++){
+            if (valores[i].equals(x)){
+                return i;
             }
-        
+        }
         return -1;
     }
+
     
-    public Boolean estaVazia(){
-         for (int i=0; i<array.length;i++){
-                if (array[i]!=null){
-                    return Boolean.FALSE;
-                }
-            }
-         return Boolean.TRUE;
-    }
-        
-    public String imprime(){
-        String retorno="";
-        for (int i=0; i<array.length;i++){
-           // System.out.println(array[i]);
-           if (array[i]!=null){
-                   if (i==0){
-                   retorno +=array[i];
-                   }else{
-            retorno+= ", "+array[i];
-            }
-           }
-        }
-        return retorno;
-    }
-    
-    public String[] getArray() {
-        return array;
+    public int getTamanho() {
+        return this.ultimo;
     }
 
-    public void setArray(String[] array) {
-        this.array = array;
+    public String imprime() {
+        String retorno = "[";
+
+        for (int i=0; i < this.ultimo; i++){
+            retorno += valores[i]+"; ";
+        }
+        try {
+            // para retirar a última vírgula e espaço
+            retorno = retorno.substring(0,retorno.length()-2);
+            return retorno+"]";
+        } catch (StringIndexOutOfBoundsException strExc){
+            return "[]";
+        }
     }
-    
+
+    public String consulta(int p){
+        try {
+            return this.valores[p];
+        } catch (IndexOutOfBoundsException iae){
+            return null;
+        }
+    }
+
+    public ListaComArray concatena(ListaComArray outra){
+        if (this.getTamanho()+outra.getTamanho() > MAXTAM)
+            return null;
+
+        ListaComArray nova = new ListaComArray();
+        for (int i=0; i < this.getTamanho(); i++){
+            nova.insere(this.consulta(i));
+        }
+        for (int i=0; i < outra.getTamanho(); i++){
+            nova.insere(outra.consulta(i));
+        }
+
+        return nova;
+    }
+
+    public ListaComArray divide(){
+        if (this.estaVazia())
+            return null;
+
+        ListaComArray nova = new ListaComArray();
+        int meio = this.getTamanho() / 2;
+
+        for (int i = meio; i < this.getTamanho(); i++){
+            nova.insere(valores[i]);
+            valores[i] = null;
+        }
+        this.ultimo = meio;
+        return nova;
+    }
+
+    public ListaComArray copia(){
+        ListaComArray nova = new ListaComArray();
+
+        for (int i=0; i < this.getTamanho(); i++){
+            nova.insere(valores[i]);
+        }
+
+        return nova;
+    }
+
 }
