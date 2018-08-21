@@ -1,6 +1,6 @@
 
 import Exercicio1.LE1_Ex1;
-import ListaComArray.PersonalListaComArray;
+import ListaComArray.ListaComArray;
 import ListaComArray.TesteLista;
 import javax.swing.JOptionPane;
 
@@ -24,6 +24,9 @@ public class Main {
                 new LE1_Ex1();
                 break;
             case "AL":
+                new ListaComArray().ListaComArrayTeste();
+                break;
+            case "ALP":
                 new TesteLista().main(args);
                 break;
             default:
