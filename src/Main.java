@@ -17,7 +17,9 @@ public class Main {
         String exercicio=JOptionPane.showInputDialog("Exercício: "
                 + "\n 1 - LE1_EX1"
                 + "\n AL - ListaComArray"
-                + "\n ALP - ListaComArrayProfessor");
+                + "\n ALP - ListaComArrayProfessor"
+                + "\n LE - ListaEncadeada"
+                + "\n DL - DuasListas");
         
         switch (exercicio){
             case "1":
@@ -28,6 +30,12 @@ public class Main {
                 break;
             case "ALP":
                 new TesteLista();
+                break;
+                case "LE":
+                new TesteListaEncadeada();
+                break;
+                    case "DL":
+                new TesteDuasListas();
                 break;
             default:
                 JOptionPane.showMessageDialog(null,"Opcao Invalida:");

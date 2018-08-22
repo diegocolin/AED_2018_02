@@ -10,7 +10,7 @@
  */
 public interface Lista {
 
-    void ListaComArrayTeste();
+    
 
     Lista concatena(Lista l);
 

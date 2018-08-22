@@ -19,7 +19,6 @@ public class ListaComArray implements Lista {
    
     
 
-    @Override
     public void ListaComArrayTeste() {
        Lista lista = new ListaComArray();
         System.out.println(lista.imprime());
