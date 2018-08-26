@@ -20,8 +20,6 @@ public interface Lista {
 
     Boolean estaVazia();
 
-    String[] getArray();
-
     String imprime();
 
     void insere(String valor);
@@ -31,7 +29,9 @@ public interface Lista {
     int localiza(String valor);
 
     String retira(int posicao);
+    
+    int getTamanho();
 
-    void setArray(String[] array);
+    public String consulta(int i);
     
 }

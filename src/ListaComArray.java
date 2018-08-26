@@ -64,8 +64,8 @@ public class ListaComArray implements Lista {
    public Lista concatena(Lista l){
        Lista listasConcatenadas = new ListaComArray();
        listasConcatenadas=this.copia();
-       for (int i=0;i<l.getArray().length;i++){
-           listasConcatenadas.insere(l.getArray()[i]);
+       for (int i=0;i<l.getTamanho();i++){
+           listasConcatenadas.insere(l.consulta(i));
        }
        return listasConcatenadas;
     }
@@ -82,8 +82,8 @@ public class ListaComArray implements Lista {
     @Override
        public Lista copia() {
         ListaComArray listaCopiada = new ListaComArray();
-         for (int i=0;i<this.getArray().length;i++){
-           listaCopiada.insere(this.getArray()[i]);
+         for (int i=0;i<this.getTamanho();i++){
+           listaCopiada.insere(this.consulta(i));
        }
         return listaCopiada;
     }
@@ -163,15 +163,15 @@ public class ListaComArray implements Lista {
         }
         return retorno;
     }
-    
+
     @Override
-    public String[] getArray() {
-        return array;
+    public int getTamanho() {
+       return array.length;
     }
 
     @Override
-    public void setArray(String[] array) {
-        this.array = array;
+    public String consulta(int i) {
+        return array[i];
     }
-    
+  
 }

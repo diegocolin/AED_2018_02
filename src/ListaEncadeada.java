@@ -1,44 +1,59 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 
 /**
  *
  * @author dcsoares
  */
 public class ListaEncadeada implements Lista {
-
+    
     protected ItemLista primeiro;
     protected ItemLista ultimo;
     protected int qtdeElementos;
-
+    
     @Override
     public Lista concatena(Lista l) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Lista retorno = this;
+        for (int i = 0; i<l.getTamanho();i++){
+            retorno.insere(l.consulta(i));
+        }
+        return retorno;
     }
-
+    
     @Override
     public Lista copia() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this;
     }
-
+    
     @Override
     public Lista divide() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (primeiro!=null){
+            ItemLista itemAnalisado = primeiro;
+           
+            itemAnalisado = primeiro;
+            for (int j=0;j<(qtdeElementos/2);j++){
+               ultimo=itemAnalisado;
+               itemAnalisado=itemAnalisado.getProx();
+        }
+            ultimo.setProx(null);
+        
+        }
+        return this;
     }
-
+    
     @Override
     public Boolean estaVazia() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (primeiro==null || qtdeElementos==0){
+            return Boolean.TRUE;
+        }
+        return  Boolean.FALSE;
     }
-
-    @Override
-    public String[] getArray() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
+    
+    
     @Override
     public String imprime() {
         String str = "";
@@ -49,7 +64,7 @@ public class ListaEncadeada implements Lista {
         }
         return str;
     }
-
+    
     @Override
     public void insere(String valor) {
         if (primeiro == null) {
@@ -65,11 +80,11 @@ public class ListaEncadeada implements Lista {
         }
         this.qtdeElementos++;
     }
-
+    
     @Override
     public void insere(String valor, int posicao) {
-       ItemLista novo = new ItemLista();
-            novo.setInfo(valor);
+        ItemLista novo = new ItemLista();
+        novo.setInfo(valor);
         if (posicao < qtdeElementos && posicao!=0) {
             int i = 0;
             ItemLista anterior = primeiro;
@@ -79,27 +94,78 @@ public class ListaEncadeada implements Lista {
             }
             novo.setProx(anterior.getProx());
             anterior.setProx(novo);
+            this.qtdeElementos++;
         }else{
             if (posicao==0){
-              novo.setProx(primeiro);
-              primeiro=novo;
+                novo.setProx(primeiro);
+                primeiro=novo;
+                this.qtdeElementos++;
             }
         }
+        
     }
-
+    
     @Override
     public int localiza(String valor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (primeiro!=null){
+            ItemLista itemAnalisado=primeiro;
+            for (int i=0; i<qtdeElementos;i++){
+                if (itemAnalisado.getInfo().equals(valor)){
+                    return i;
+                }else{
+                    itemAnalisado=itemAnalisado.getProx();
+                }
+                
+            }
+        }
+        return -1;
     }
-
+    
     @Override
     public String retira(int posicao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        if (primeiro!=null){
+            ItemLista itemAnalisado=primeiro;
+            ItemLista itemAnterior = primeiro;
+            if (posicao!=0){
+            for (int i=0; i<qtdeElementos;i++){
+                if (i==(posicao-1)){
+                    itemAnterior=itemAnalisado;
+                }
+                if (i==posicao){
+                    itemAnterior.setProx(itemAnalisado.getProx());
+                    return itemAnalisado.getInfo();
+                }
+                itemAnalisado=itemAnalisado.getProx();
+            }
+            }else{
+                String retirado=primeiro.getInfo();
+                primeiro=primeiro.getProx();
+                return retirado;
+            }
+        }
+        return "Posicao nao existente";
     }
-
+    
     @Override
-    public void setArray(String[] array) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getTamanho() {
+        return qtdeElementos;
     }
-
+    
+    @Override
+    public String consulta(int i) {
+        if (i<qtdeElementos){
+            if (primeiro!=null){
+                ItemLista itemAnalisado=primeiro;
+                for (int j=0; j<qtdeElementos;j++){
+                   if (j==i){
+                       return itemAnalisado.getInfo();
+                    }
+                    itemAnalisado=itemAnalisado.getProx();
+                }
+            }
+        }
+        return "Essa lista nao tem a posicao "+i;
+    }
+    
 }
