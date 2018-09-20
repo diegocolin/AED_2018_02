@@ -1,13 +1,30 @@
-
-/**
- *
- * @author Marcel
- */
 public class TesteListaEncadeada {
 
     public TesteListaEncadeada() {
         ListaEncadeada lista = new ListaEncadeada();
-        System.out.println("Lista vazia: "+lista.imprime());
+
+        lista.insere("L");
+        lista.insere("M");
+        lista.insere("A");
+        lista.insere("B");
+        lista.insere("M");
+        lista.insere("N");
+        lista.insere("O");
+        lista.insere("P");
+        lista.insere("P");
+       
+        System.out.println("QUESTAO 4");
+        System.out.println("M > "+lista.ultimoIndiceDe("M"));
+        System.out.println("P > "+lista.ultimoIndiceDe("P"));
+        System.out.println("K > "+lista.ultimoIndiceDe("K"));
+        
+        System.out.println("QUESTAO 5");
+        System.out.println("Lista ordenada normalmente: "+lista.imprime());
+        System.out.println("Lista ordenada inversamente: "+lista.imprimeInverso());
+        
+        System.out.println("Lista ordenada recursivamente: "+lista.imprimeRecursivoEncadeada(lista.primeiro, ""));
+        
+        /*System.out.println("Lista vazia: "+lista.imprime());
         lista.insere("A");
         lista.insere("B");
         System.out.println("Esperado A,B = "+lista.imprime());
@@ -43,9 +60,7 @@ public class TesteListaEncadeada {
         System.out.println("Lista 4 com AA na primeira posição = "+lista4.imprime());
         
         lista5 = (ListaEncadeada)lista4.copia();
-        System.out.println("Lista 5 (cópia de 4) = "+lista5.imprime());
+        System.out.println("Lista 5 (cópia de 4) = "+lista5.imprime());*/
         
     }
-    
-   
 }

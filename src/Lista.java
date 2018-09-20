@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
- * @author dcsoares
+ * @author dcsoares & darndt
  */
-public interface Lista {
-
-    
+public interface Lista<T> {
 
     Lista concatena(Lista l);
 
@@ -21,6 +13,12 @@ public interface Lista {
     Boolean estaVazia();
 
     String imprime();
+    
+    String imprimeInverso();
+    
+    String imprimeRecursivoEncadeada(ItemLista atual, String retorno);
+    
+    String imprimeRecursivo(int start, String retorno);
 
     void insere(String valor);
 
@@ -32,6 +30,8 @@ public interface Lista {
     
     int getTamanho();
 
-    public String consulta(int i);
+    String consulta(int i);
+    
+    int ultimoIndiceDe(T x);
     
 }

@@ -1,11 +1,4 @@
-
 import javax.swing.JOptionPane;
-
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
 
 /**
  *
@@ -15,14 +8,14 @@ public class Main {
     
     public static void main(String[] args) {
         String exercicio=JOptionPane.showInputDialog("Exercício: "
-                + "\n 1 - LE1_EX1"
+                + "\n L - LE1_EX1"
                 + "\n AL - ListaComArray"
                 + "\n ALP - ListaComArrayProfessor"
                 + "\n LE - ListaEncadeada"
                 + "\n DL - DuasListas");
         
-        switch (exercicio){
-            case "1":
+        switch (exercicio.toUpperCase()){
+            case "L":
                 new LE1_Ex1();
                 break;
             case "AL":
@@ -40,6 +33,5 @@ public class Main {
             default:
                 JOptionPane.showMessageDialog(null,"Opcao Invalida:");
         }
-        
     }
 }
