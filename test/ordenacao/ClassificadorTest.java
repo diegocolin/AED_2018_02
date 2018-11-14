@@ -3,10 +3,9 @@ package ordenacao;
 
 import java.util.Random;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import java.text.NumberFormat;
+import static org.junit.Assert.fail;
 /**
  *
  * @author Marcel
@@ -34,6 +33,18 @@ public class ClassificadorTest {
         // apenas para carregar a classe Classificador e não comprometer a verificação do tempo
         String[] carrega = {"b","a"};
         Classificador.bubbleSort(carrega);
+    }
+
+    @org.junit.AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @org.junit.Before
+    public void setUp() throws Exception {
+    }
+
+    @org.junit.After
+    public void tearDown() throws Exception {
     }
     
     
