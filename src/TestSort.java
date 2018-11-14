@@ -8,8 +8,8 @@ public class TestSort {
         int vetor[] = {9, 0, 4, 2, 3, 8, 7, 1, 6, 5};
 
         BubbleSort bs = new BubbleSort(vetor);
-        
-        System.out.println("Bubble Sort:");
+
+        System.out.println("-- Bubble Sort --");
         System.out.println("Vetor não ordenado:");
         System.out.println(bs.toString());
 
@@ -17,5 +17,7 @@ public class TestSort {
 
         System.out.println("Vetor ordenado:");
         System.out.println(bs.toString());
+        System.out.println("=========================================================");
+
     }
 }
