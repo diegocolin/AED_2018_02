@@ -1,3 +1,5 @@
+package Lista;
+
 public class TesteListaEncadeada {
 
     public TesteListaEncadeada() {

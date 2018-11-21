@@ -1,3 +1,8 @@
+import Pilha.LE1_Ex1;
+import Lista.TesteLista;
+import Lista.TesteListaEncadeada;
+import Lista.TesteDuasListas;
+import Lista.ListaComArray;
 import javax.swing.JOptionPane;
 
 /**
