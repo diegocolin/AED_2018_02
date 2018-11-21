@@ -1,4 +1,5 @@
-package ordenacao;
+
+import ordenacao.BubbleSort;
 
 
 /**
