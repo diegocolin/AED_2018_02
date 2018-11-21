@@ -1,3 +1,5 @@
+package pesquisa;
+
 
 import pesquisa.Veiculo;
 import pesquisa.InterfaceExercicio8;
@@ -39,7 +41,7 @@ public class TestePesquisa {
         
         // criação das estruturas
         InterfaceExercicio8[] estruturas = new InterfaceExercicio8[3];
-        estruturas[0] = new ListaPesquisaLinea();
+        estruturas[0] = new ListaPesquisaLinear();
         estruturas[1] = new ListaPesquisaBinaria();
         estruturas[2] = new ArvoreBinariaBusca();
         

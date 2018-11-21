@@ -1,5 +1,8 @@
 package pesquisa;
 
+import pesquisa.InterfaceExercicio8;
+import pesquisa.Veiculo;
+
 /**
  *
  * @author nomes....
