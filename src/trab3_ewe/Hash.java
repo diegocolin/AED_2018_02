@@ -1,5 +1,4 @@
-package trab3.ewe;
-
+package trab3_ewe;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Random;
@@ -11,14 +10,10 @@ import java.util.Random;
 public class Hash
 {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args)
     {
         MapaDispersao<String, Veiculo> mp = new MapaDispersao(10000);
 
-        // geração dos dados
         String nome, placa, modelo;
         int ano;
 
