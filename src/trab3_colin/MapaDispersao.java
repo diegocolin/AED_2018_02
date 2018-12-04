@@ -59,7 +59,7 @@ public class MapaDispersao<K, T> {
         }
     }
 
-    public Lista buscar(K chave) {
+    public T buscar(K chave) {
         if (chave == null) {
             System.out.println("Insira uma chave para buscar.");
             return null;
@@ -70,10 +70,10 @@ public class MapaDispersao<K, T> {
             return null;
         } else {
             System.out.println("Elemento com a chave '"+chave+"' encontrado na posição "+hash+" da tabela");
-            return tabela[hash];
+            return (T) tabela[hash];
         }
     }
-
+    
     public int quantosElementos() {
         int quantidadeNaoNulos=0;
         for (int i=0;i<this.tabela.length;i++){
