@@ -1,108 +1,101 @@
- /**
-  * @authors Diego Arndt, Diego Colin Soares e Felipe de Jesus Vieira
-  */
+/**
+ * @authors Diego Arndt, Diego Colin Soares e Felipe de Jesus Vieira
+ */
 
-public class MapaDispersao<K, T>{
-    
-    private  Lista<K, T>[] tabela;
-    
-    public MapaDispersao(int qtd){
+public class MapaDispersao<K, T> {
+
+    private Lista<K, T>[] tabela;
+
+    public MapaDispersao(int qtd) {
         int tamanho = (int) (qtd * 0.5);
-        
-        int quantidade = procuraPrimo(tamanho, 10);
-        
-        System.out.println("Melhor tamanho pra tabela: " + quantidade);
-        
-        // Cria a tabela com o melhor tamanho
+        int quantidade = procurarPrimo(tamanho, 10);
         setTabela(new Lista[quantidade]);
-        
     }
-    
-    private int calcularHash(K chave){
-        int hash = chave.hashCode() % procuraPrimo(quantosElementos()/2, 10);
-        
-        if(hash < 0){
+
+    private int calcularHash(K chave) {
+        int hash = chave.hashCode() % procurarPrimo(this.tabela.length / 2, 10);
+        if (hash < 0) {
             hash = hash * -1;
         }
-        System.out.println("chave " + chave + " hash: " + hash);
-        
         return hash;
     }
-    
-    public void inserir(K chave, T objeto){
-        if (chave == null || objeto == null){
-            return;
+
+    public boolean inserir(K chave, T dado) {
+        if (chave == null || dado == null) {
+            System.out.println("Insira uma chave e um objeto para inserir.");
+            return false;
         }
         int hash = calcularHash(chave);
-        
         ElementoLista<T> elemento = new ElementoLista<>();
-        elemento.setElemento(objeto);
-        
-        if (tabela[hash] == null){
+        elemento.setElemento(dado);
+        if (tabela[hash] == null) {
             Lista<K, T> lista = new Lista<>();
-            
             lista.insere((T) elemento);
-            
             tabela[hash] = lista;
-        }else{
-            Lista<K, T> listaAux = tabela[hash];
-            
-            listaAux.insere((T) elemento);
-            
-            tabela[hash] = listaAux;
+             System.out.println("Objeto inserido.");
+            return true;
+        
+        } else {
+            System.out.println("Esse objeto já existe no hash");
+            return false;
         }
+       
     }
-    
-    public Lista buscar(K chave){
-        if(chave == null){
+
+    public T remover(K chave) {
+        if (chave == null) {
+            System.out.println("Insira uma chave para remover.");
             return null;
         }
         int hash = calcularHash(chave);
-        
-        if(tabela[hash] == null){
+        if (tabela[hash] == null) {
+            System.out.println("Nenhum elemento encontrado com a chave '"+chave+"'.");
             return null;
-        }else{
-            return tabela[hash];
-        }
-    }
-    
-    public T remover(K chave)
-    {
-        if(chave == null){
-            return null;
-        }
-        int hash = calcularHash(chave);
-        
-        if(tabela[hash] == null){
-            return null;
-        }else{
+        } else {
             T objetoRemovido = (T) tabela[hash];
-            
             tabela[hash] = null;
-            
+            System.out.println("Objeto removido");
             return objetoRemovido;
         }
     }
-    
-    public int quantosElementos(){
-        return this.tabela.length;
+
+    public Lista buscar(K chave) {
+        if (chave == null) {
+            System.out.println("Insira uma chave para buscar.");
+            return null;
+        }
+        int hash = calcularHash(chave);
+        if (tabela[hash] == null) {
+            System.out.println("Nenhum elemento encontrado com a chave '"+chave+"'.");
+            return null;
+        } else {
+            System.out.println("Elemento com a chave '"+chave+"' encontrado na posição "+hash+" da tabela");
+            return tabela[hash];
+        }
     }
-    
-    private int procuraPrimo(int numero, int limiteAceito){
+
+    public int quantosElementos() {
+        int quantidadeNaoNulos=0;
+        for (int i=0;i<this.tabela.length;i++){
+            if (this.tabela[i]!=null){
+                quantidadeNaoNulos++;
+            } 
+        }
+          return quantidadeNaoNulos;
+    }
+
+    private int procurarPrimo(int numero, int limiteAceito) {
         boolean isPrimo;
         limiteAceito = numero + limiteAceito;
-        
-        for (int i = numero; i < limiteAceito; i++){
+        for (int i = numero; i < limiteAceito; i++) {
             isPrimo = true;
-            
-            for (int j = 2; j < i; j++){
-                if (i % j == 0){
+            for (int j = 2; j < i; j++) {
+                if (i % j == 0) {
                     isPrimo = false;
                     break;
                 }
             }
-            
-            if (isPrimo){
+            if (isPrimo) {
                 return i;
             }
         }
@@ -116,5 +109,5 @@ public class MapaDispersao<K, T>{
     public void setTabela(Lista<K, T>[] tabela) {
         this.tabela = tabela;
     }
-    
+
 }

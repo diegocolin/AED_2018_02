@@ -1,13 +1,10 @@
-
 /**
- *
- * @author ejust
- * @param <T> - Tipo de dado
+ * @authors Diego Arndt, Diego Colin Soares e Felipe de Jesus Vieira
  */
 public class Lista<K, T> {
 
-    private ElementoLista<T> primeiroElemento = null;
-    private ElementoLista<T> ultimoElemento = null;
+    private ElementoLista<T> primeiroElemento;
+    private ElementoLista<T> ultimoElemento;
     private int qtdElementos = 0;
 
     public Lista() {

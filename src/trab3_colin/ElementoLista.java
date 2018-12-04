@@ -1,14 +1,11 @@
-
 /**
- *
- * @author ejust
- * @param <T> - Tipo de dado genérico
+  * @authors Diego Arndt, Diego Colin Soares e Felipe de Jesus Vieira
  */
 public class ElementoLista<T> {
 
     private T elemento;
-    private ElementoLista proxElemento = null;
-    private ElementoLista elementoAnt = null;
+    private ElementoLista proxElemento;
+    private ElementoLista elementoAnt;
 
     public ElementoLista() {
     }
